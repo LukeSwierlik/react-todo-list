@@ -1,9 +1,14 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { cardsReducer } from './cards/cards.reducer';
 
-interface State {}
+interface State {
+    cards: any;
+}
 
-export const rootReducers = combineReducers<State>({});
+export const rootReducers = combineReducers<State>({
+    cards: cardsReducer,
+});
 
 const composeEnhancers = (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as any) || compose;
 

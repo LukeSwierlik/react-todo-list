@@ -1,24 +1,37 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
-const settings = {
-    colorLight: '#fff',
-    colorDark: '#2f3542',
-    colorSuccess: '#26de81',
-    colorWaring: '#e1644e',
-    fontText: "'Poppins', sans-serif",
-    radius: '5px',
-    baseSize: '12px',
-    transition: 'all 0.5s',
-};
+import { darken } from 'polished';
+import { settings } from '../../styles/settings';
 
 export const HeaderComponent = styled.div`
-    background: ${settings.colorLight}
+    background: ${darken(0.03, settings.colorDark)};
     padding: 25px;
 `;
 
-export const HeaderLink = styled.a`
-    color: red;
+const activeClassName = 'active';
+
+export const HeaderLink = styled(NavLink).attrs({ activeClassName })`
+    color: ${settings.colorLight};
     text-decoration: none;
     font-weight: 700;
-    margin-right: 20px;
+    margin-right: ${settings.baseSize};
+    transition: ${settings.transition};
+
+    &:hover {
+        color: ${settings.colorSuccess};
+    }
+
+    &.${activeClassName} {
+        color: ${settings.colorWaring};
+    }
+`;
+
+export const HeaderWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const HeaderLogo = styled.div`
+    font-size: 24px;
 `;
